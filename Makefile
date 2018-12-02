@@ -1,0 +1,3 @@
+tests:
+	echo "Test it!"
+	go test -v ./...
