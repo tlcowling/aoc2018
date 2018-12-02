@@ -32,19 +32,23 @@ func Day2(input string) string {
 
 func Day2Part2(input string) string {
 	lines := strings.Split(input, "\n")
+	lowestHamming := 100000000
+	bestCandidates := []string{"", ""}
 
 	for i:=0; i<len(lines); i++{
 		for j:=0; j<len(lines); j++ {
 			if i==j {
 				continue
 			}
-
-			if hamming.Strings(lines[i], lines[j]) == 2 {
-				return commonString(lines[i], lines[j])
+			ham := hamming.Strings(lines[i], lines[j])
+			if ham <= lowestHamming {
+				lowestHamming = ham
+				bestCandidates[0] = lines[i]
+				bestCandidates[1] = lines[j]
 			}
 		}
 	}
-	return "Not found!"
+	return commonString(bestCandidates[0], bestCandidates[1])
 }
 
 // I wanted to do set union.  But I also wanted to get quick solution :)
